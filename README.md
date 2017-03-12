@@ -4,4 +4,4 @@
 + `InputStreamReader`可以把`InputStream`转换为`Reader`，而`OutputStreamWriter`可以把`OutputStream`转换为`Writer`
 + `BufferedInputStream.available()`方法可以用来产生输入流的估计字节数
 + `Java NIO`速度的提升来自于所使用的结构更接近于操作系统执行`I/O`，**通道**和**缓冲器**。可以把它想象成一个煤矿，通道是包含煤层（数据）的矿藏，而缓冲器则是派送到矿藏的卡车。卡车载满煤炭而归，我们再从卡车上获得煤炭。也就是说我们没有直接和通道交互，我们只是和缓冲器交互，并把缓冲器派到通道。通道要么从缓冲器获得数据，要么向缓冲器发送数据。
-+ `ByteBuffer.rewind()`重绕此缓冲区，将当前位置设置为0；`ByteBuffer.flip()`首先将缓冲区的大小限制设置为当前位置，然后再将当前位置设置为0
++ `ByteBuffer.rewind()`重绕此缓冲区，将当前位置设置为0；`ByteBuffer.flip()`首先将缓冲区的大小限制设置为当前位置，然后再将当前位置设置为0，`flip`用于准备从缓冲区读取已经写入的数据
