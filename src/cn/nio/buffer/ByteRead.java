@@ -31,8 +31,9 @@ public class ByteRead {
 
         int i = 1;
 
+        //循环读
         while (bytesRead != -1) {
-            System.out.println("进入第" + i++ + "次循环");
+            //            System.out.println("进入第" + i++ + "次循环");
             buf.flip();//准备读
             while (buf.hasRemaining()) {
                 System.out.print((char) buf.get());//每次读取1byte
@@ -41,6 +42,13 @@ public class ByteRead {
             buf.clear();
             bytesRead = inChannel.read(buf);
         }
+
+        buf.clear();
+
+        buf.put("this is a test class named ByteRead.java \n".getBytes());
+        buf.flip();
+
+        inChannel.write(buf);
 
         aFile.close();
 

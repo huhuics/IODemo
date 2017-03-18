@@ -25,7 +25,7 @@
 ![BIO](http://img.blog.csdn.net/20150507161118213?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaHVodWlfY3M=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
  + NIO示意图
 ![NIO](http://img.blog.csdn.net/20150507165828514?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaHVodWlfY3M=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
- + `FileChannel`是连接文件的；`SocketChannel`是连接TCP网络socket；`ServerSocketChannel`是监听连接进来的TCP连接；`DatagramChannel`用于接收和发送UDP数据包
+ + `FileChannel`是连接文件的；`SocketChannel`是连接TCP网络socket；`ServerSocketChannel`是监听连接进来的TCP连接；`DatagramChannel`用于接收和发送UDP数据包；`AsynchronousFileChannel`可以使文件读写异步
  ## Java NIO vs IO
 |IO|NIO|
 |--|---|
