@@ -4,7 +4,9 @@
  */
 package cn.nio.simple.server;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.CharBuffer;
@@ -27,6 +29,11 @@ public class Client {
 
     public Client() {
 
+    }
+
+    public static void main(String[] args) {
+        Client client = new Client();
+        client.makeConnection();
     }
 
     /**
@@ -53,15 +60,41 @@ public class Client {
             client.close();
         } catch (IOException e) {
         }
-        System.exit(0);
 
     }
 
     private int sendMessage() {
-        return 0;
+        System.out.println("Client.sendMessage");
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+        String msg = null;
+        ByteBuffer byteBuf = ByteBuffer.allocate(1024);
+        int nBytes = 0;
+        try {
+            msg = in.readLine();
+            System.out.println("msg  is " + msg);
+            byteBuf = ByteBuffer.wrap(msg.getBytes());
+            nBytes = client.write(byteBuf);
+            System.out.println("nBytes is " + nBytes);
+            if (msg.equals("quit") || msg.equals("shutdown")) {
+                System.out.println("time to stop the client");
+                interruptThread();
+                client.close();
+                return -1;
+            }
+        } catch (Exception e) {
+        }
+
+        System.out.println("Wrote " + nBytes + " bytes to the server");
+        return nBytes;
     }
 
-    private void receiveMessage() {
+    public void receiveMessage() {
+        rt = new RecvThread("Receive Thread", client);
+        rt.start();
+    }
+
+    public void interruptThread() {
+        rt.val = false;
     }
 
     /**
